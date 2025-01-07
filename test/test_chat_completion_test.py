@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 from src.providers import get_provider
 from src.providers.openai_provider import OpenAIProvider
 from src.providers.anthropic_provider import ClaudeProvider
+from src.providers.google_provider import GoogleProvider
 
 load_dotenv()
 
@@ -15,6 +16,10 @@ def openai_provider():
 def claude_provider():
     return get_provider("claude", os.getenv("CLAUDE_KEY"))
 
+@pytest.fixture
+def google_provider():
+    return get_provider("google", os.getenv("GOOGLE_API_KEY"))
+
 def test_openai_provider_fixture(openai_provider):
     assert isinstance(openai_provider, OpenAIProvider)
     assert openai_provider.api_key == os.getenv("OPENAI_KEY")
@@ -22,6 +27,10 @@ def test_openai_provider_fixture(openai_provider):
 def test_claude_provider_fixture(claude_provider):
     assert isinstance(claude_provider, ClaudeProvider)
     assert claude_provider.api_key == os.getenv("CLAUDE_KEY")
+
+def test_google_provider_fixture(google_provider):
+    assert isinstance(google_provider, GoogleProvider)
+    assert google_provider.api_key == os.getenv("GOOGLE_API_KEY")
 
 @pytest.mark.asyncio
 async def test_chat_completion(openai_provider, claude_provider):
@@ -33,9 +42,9 @@ async def test_chat_completion(openai_provider, claude_provider):
             {"role": "user", "content": "What's the capital of France?"}
         ]
         response = await provider.chat_completion(model, messages)
-        
+
         assert isinstance(response, dict)
-        #the following wont work since claudes response is different from openai 
+        #the following wont work since claudes response is different from openai
         # assert "choices" in response
         # assert len(response["choices"]) > 0
         # assert "message" in response["choices"][0]
