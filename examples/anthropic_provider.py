@@ -2,7 +2,7 @@ import asyncio
 import logging
 import os
 from dotenv import load_dotenv
-from src.providers import get_provider  # Adjust this import based on your project structure
+from async_llm.providers import get_provider  # Adjust this import based on your project structure
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)

@@ -1,10 +1,10 @@
 import pytest
 import os
 from dotenv import load_dotenv
-from src.providers import get_provider
-from src.providers.openai_provider import OpenAIProvider
-from src.providers.anthropic_provider import ClaudeProvider
-from src.providers.google_provider import GoogleProvider
+from async_llm.providers import get_provider
+from async_llm.providers.openai_provider import OpenAIProvider
+from async_llm.providers.anthropic_provider import ClaudeProvider
+from async_llm.providers.google_provider import GoogleProvider
 
 load_dotenv()
 

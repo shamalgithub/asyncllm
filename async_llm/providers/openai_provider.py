@@ -1,5 +1,5 @@
-from src.providers.abstract_basellm import BaseLLMProvider
-from src.utils.pydantic_to_json import transform_schema
+from async_llm.providers.abstract_basellm import BaseLLMProvider
+from async_llm.utils.pydantic_to_json import transform_schema
 import httpx 
 from typing import List , Dict
 import json 

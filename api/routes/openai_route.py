@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Depends, HTTPException
-from src.providers import get_provider
+from async_llm.providers import get_provider
 from models.openai_request_models import ChatCompletionRequest , FunctionCallRequest
 import json 
 import os

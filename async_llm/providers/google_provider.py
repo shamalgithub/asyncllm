@@ -1,24 +1,26 @@
-from src.providers.abstract_basellm import BaseLLMProvider
+from async_llm.providers.abstract_basellm import BaseLLMProvider
 import httpx
 from typing import List, Dict
-import json
 from urllib.parse import urljoin, urlencode
 
 class GoogleProvider(BaseLLMProvider):
     def __init__(self, api_key: str) -> None:
         super().__init__()
-        base_url = "https://generativelanguage.googleapis.com/v1beta/"
-        endpoint = "models/gemini-1.5-flash:generateContent"
-        query_params = {"key": api_key}
-
-        self.base_url = urljoin(base_url, endpoint) + "?" + urlencode(query_params)
         self.api_key = api_key
         self.headers = {
             "Content-Type": "application/json",
         }
 
-    async def chat_completion(self, messages: List[Dict[str, str]]):
-        url = self.base_url
+    def _create_base_url(self, model:str="gemini-1.5-flash"):
+        base_url = "https://generativelanguage.googleapis.com/v1beta/"
+        endpoint = f"models/{model}:generateContent"
+        query_params = {"key": self.api_key}
+        base_url = urljoin(base_url, endpoint) + "?" + urlencode(query_params)
+        return base_url
+
+    async def chat_completion(self, model:str, messages: List[Dict[str, str]]):
+        self.model = model
+        url = self._create_base_url(model)
         headers = self.headers
         data = {
             "contents": [
