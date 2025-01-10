@@ -1,7 +1,7 @@
 import asyncio
 import os
 from dotenv import load_dotenv
-from src.providers import get_provider
+from async_llm.providers import get_provider
 import logging
 from pydantic import BaseModel
 import sys 
