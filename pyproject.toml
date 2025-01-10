@@ -7,7 +7,7 @@ name = "async_llm"
 version = "0.0.1"
 description = "A Python package for asynchronous LLM integration."
 readme = "README.md"
-authors = [{ name = "Shamal De Silva", email = "shamalgithub@gmail.com" }, {name = "Sahan Ruwantha", "sahanr.silva@proton.me"}]
+authors = [{ name = "Shamal De Silva", email = "shamalgithub@gmail.com" }, {name = "Sahan Ruwantha", email="sahanr.silva@proton.me"}]
 classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: MIT License",
